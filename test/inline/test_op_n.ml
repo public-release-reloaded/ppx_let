@@ -28,7 +28,7 @@ let%expect_test "single pattern map" =
     ----
     locality = ((allocate_function_on_stack true) (return_value_in_exclave false)):
     ((Let_syntax.map MY_EXPR
-        ~f:(fun (MY_PAT) -> let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT) -> let () = ()[@@merlin.hide ] in MY_BODY :))
     [@nontail ])
     ----
     locality = ((allocate_function_on_stack false) (return_value_in_exclave true)):
@@ -37,7 +37,7 @@ let%expect_test "single pattern map" =
     ----
     locality = ((allocate_function_on_stack true) (return_value_in_exclave true)):
     ((Let_syntax.map MY_EXPR
-        ~f:(fun (MY_PAT) -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT) -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY :))
     [@nontail ])
     |}]
 ;;
@@ -58,7 +58,7 @@ let%expect_test "single pattern map with modul" =
     ----
     locality = ((allocate_function_on_stack true) (return_value_in_exclave false)):
     ((X.Let_syntax.Let_syntax.map MY_EXPR
-        ~f:(fun (MY_PAT) -> let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT) -> let () = ()[@@merlin.hide ] in MY_BODY :))
     [@nontail ])
     ----
     locality = ((allocate_function_on_stack false) (return_value_in_exclave true)):
@@ -67,7 +67,7 @@ let%expect_test "single pattern map with modul" =
     ----
     locality = ((allocate_function_on_stack true) (return_value_in_exclave true)):
     ((X.Let_syntax.Let_syntax.map MY_EXPR
-        ~f:(fun (MY_PAT) -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT) -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY :))
     [@nontail ])
     |}]
 ;;
@@ -93,7 +93,7 @@ let%expect_test "double pattern map" =
     let __let_syntax__013_ = MY_EXPR_1[@@ppxlib.do_not_enter_value ]
     and __let_syntax__014_ = MY_EXPR_2[@@ppxlib.do_not_enter_value ] in
     ((Let_syntax.map2 __let_syntax__013_ __let_syntax__014_
-        ~f:(fun (MY_PAT_1) (MY_PAT_2) -> let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT_1) (MY_PAT_2) -> let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     ----
     locality = ((allocate_function_on_stack false) (return_value_in_exclave true)):
@@ -108,7 +108,7 @@ let%expect_test "double pattern map" =
     and __let_syntax__022_ = MY_EXPR_2[@@ppxlib.do_not_enter_value ] in
     ((Let_syntax.map2 __let_syntax__021_ __let_syntax__022_
         ~f:(fun (MY_PAT_1) (MY_PAT_2) ->
-              exclave_ let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+              exclave_ let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     |}]
 ;;
@@ -129,7 +129,7 @@ let%expect_test "single pattern map open" =
     ----
     locality = ((allocate_function_on_stack true) (return_value_in_exclave false)):
     ((Let_syntax.map (let open! Let_syntax.Open_on_rhs in MY_EXPR_1)
-        ~f:(fun (MY_PAT_1) -> let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT_1) -> let () = ()[@@merlin.hide ] in MY_BODY :))
     [@nontail ])
     ----
     locality = ((allocate_function_on_stack false) (return_value_in_exclave true)):
@@ -138,7 +138,7 @@ let%expect_test "single pattern map open" =
     ----
     locality = ((allocate_function_on_stack true) (return_value_in_exclave true)):
     ((Let_syntax.map (let open! Let_syntax.Open_on_rhs in MY_EXPR_1)
-        ~f:(fun (MY_PAT_1) -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT_1) -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY :))
     [@nontail ])
     |}]
 ;;
@@ -168,7 +168,7 @@ let%expect_test "double pattern map open" =
     and __let_syntax__034_ = let open! Let_syntax.Open_on_rhs in MY_EXPR_2
     [@@ppxlib.do_not_enter_value ] in
     ((Let_syntax.map2 __let_syntax__033_ __let_syntax__034_
-        ~f:(fun (MY_PAT_1) (MY_PAT_2) -> let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+        ~f:(fun (MY_PAT_1) (MY_PAT_2) -> let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     ----
     locality = ((allocate_function_on_stack false) (return_value_in_exclave true)):
@@ -187,7 +187,7 @@ let%expect_test "double pattern map open" =
     [@@ppxlib.do_not_enter_value ] in
     ((Let_syntax.map2 __let_syntax__041_ __let_syntax__042_
         ~f:(fun (MY_PAT_1) (MY_PAT_2) ->
-              exclave_ let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+              exclave_ let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     |}]
 ;;
@@ -223,7 +223,7 @@ let%expect_test "quadruple pattern map" =
     ((Let_syntax.map4 __let_syntax__053_ __let_syntax__054_ __let_syntax__055_
         __let_syntax__056_
         ~f:(fun (MY_PAT_1) (MY_PAT_2) (SUB_PATTERN_1, SUB_PATTERN_2) (MY_PAT_4)
-              -> let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+              -> let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     ----
     locality = ((allocate_function_on_stack false) (return_value_in_exclave true)):
@@ -244,7 +244,7 @@ let%expect_test "quadruple pattern map" =
     ((Let_syntax.map4 __let_syntax__069_ __let_syntax__070_ __let_syntax__071_
         __let_syntax__072_
         ~f:(fun (MY_PAT_1) (MY_PAT_2) (SUB_PATTERN_1, SUB_PATTERN_2) (MY_PAT_4)
-              -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+              -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     |}]
 ;;
@@ -280,7 +280,7 @@ let%expect_test "quadruple pattern bind" =
     ((Let_syntax.bind4 __let_syntax__085_ __let_syntax__086_ __let_syntax__087_
         __let_syntax__088_
         ~f:(fun (MY_PAT_1) (MY_PAT_2) (SUB_PATTERN_1, SUB_PATTERN_2) (MY_PAT_4)
-              -> let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+              -> let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     ----
     locality = ((allocate_function_on_stack false) (return_value_in_exclave true)):
@@ -301,7 +301,7 @@ let%expect_test "quadruple pattern bind" =
     ((Let_syntax.bind4 __let_syntax__101_ __let_syntax__102_ __let_syntax__103_
         __let_syntax__104_
         ~f:(fun (MY_PAT_1) (MY_PAT_2) (SUB_PATTERN_1, SUB_PATTERN_2) (MY_PAT_4)
-              -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY : @ local))
+              -> exclave_ let () = ()[@@merlin.hide ] in MY_BODY :))
       [@nontail ])
     |}]
 ;;

@@ -134,8 +134,8 @@ let%expect_test "for%bindl expansion" =
                                          let i = i + 1[@@ppxlib.do_not_enter_value
                                                         ] in
                                          __let_syntax_loop__002_ i
-                                       else Let_syntax.return () : @ local))
-             [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                                       else Let_syntax.return () :))
+             [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__002_ i)[@nontail ])
     else Let_syntax.return ()
     |}]
@@ -197,8 +197,8 @@ let%expect_test "for%bindl_fun expansion" =
                      then
                        let i = i + 1[@@ppxlib.do_not_enter_value ] in
                        __let_syntax_loop__006_ i
-                     else Let_syntax.return () : @ local))
-           [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                     else Let_syntax.return () :))
+           [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__006_ i)[@nontail ])
     else Let_syntax.return ()
     |}]
@@ -241,8 +241,8 @@ let%expect_test "while%bindl expansion" =
                                                                         false ->
                                                                         Let_syntax.return
                                                                         ()))
-                                                     [@nontail ]) : @ local))
-                                  [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value
+                                                     [@nontail ]) :))
+                                  [@nontail ]) :)[@@ppxlib.do_not_enter_value
                                                            ] in
                            ((__let_syntax_loop__007_ ())[@nontail ])
                        | false -> Let_syntax.return ()))
@@ -311,8 +311,8 @@ let%expect_test "while%bindl_fun expansion" =
                                    ~f:(function
                                        | true -> __let_syntax_loop__013_ ()
                                        | false -> Let_syntax.return ()))
-                               [@nontail ]) : @ local))
-                     [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                               [@nontail ]) :))
+                     [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
                 ((__let_syntax_loop__013_ ())[@nontail ])
             | false -> Let_syntax.return ()))
     [@nontail ])
@@ -336,7 +336,7 @@ let%expect_test "let%bindl expansion" =
     and __let_syntax__015_ = return EXPRESSION2[@@ppxlib.do_not_enter_value ] in
     ((Let_syntax.bind (Let_syntax.both __let_syntax__014_ __let_syntax__015_)
         ~f:(fun (PATTERN1, PATTERN2) ->
-              exclave_ let () = ()[@@merlin.hide ] in return EXPRESSION3 : @ local))
+              exclave_ let () = ()[@@merlin.hide ] in return EXPRESSION3 :))
       [@nontail ])
     |}]
 ;;
@@ -379,7 +379,7 @@ let%expect_test "let%bindl_fun expansion" =
     and __let_syntax__021_ = return EXPRESSION2[@@ppxlib.do_not_enter_value ] in
     ((Let_syntax.bind (Let_syntax.both __let_syntax__020_ __let_syntax__021_)
         ~f:(fun (PATTERN1, PATTERN2) ->
-              let () = ()[@@merlin.hide ] in return EXPRESSION3 : @ local))
+              let () = ()[@@merlin.hide ] in return EXPRESSION3 :))
       [@nontail ])
     |}]
 ;;
@@ -401,7 +401,7 @@ let%expect_test "let%mapl expansion" =
     and __let_syntax__024_ = return EXPRESSION2[@@ppxlib.do_not_enter_value ] in
     ((Let_syntax.map (Let_syntax.both __let_syntax__023_ __let_syntax__024_)
         ~f:(fun (PATTERN1, PATTERN2) ->
-              exclave_ let () = ()[@@merlin.hide ] in return EXPRESSION3 : @ local))
+              exclave_ let () = ()[@@merlin.hide ] in return EXPRESSION3 :))
       [@nontail ])
     |}]
 ;;

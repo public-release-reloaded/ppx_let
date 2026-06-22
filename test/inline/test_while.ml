@@ -50,8 +50,8 @@ let%expect_test "while%bind expansion" =
                                    ~f:(function
                                        | true -> __let_syntax_loop__002_ ()
                                        | false -> Let_syntax.return ()))
-                               [@nontail ]) : @ local))
-                     [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                               [@nontail ]) :))
+                     [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
                 ((__let_syntax_loop__002_ ())[@nontail ])
             | false -> Let_syntax.return ()))
     [@nontail ])
@@ -104,8 +104,8 @@ let%expect_test "while%bind expansion" =
                                                                         false ->
                                                                         Let_syntax.return
                                                                         ()))
-                                                     [@nontail ]) : @ local))
-                                  [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value
+                                                     [@nontail ]) :))
+                                  [@nontail ]) :)[@@ppxlib.do_not_enter_value
                                                            ] in
                            ((__let_syntax_loop__006_ ())[@nontail ])
                        | false -> Let_syntax.return ()))

@@ -122,7 +122,7 @@ let wrap_expansion_identity ~loc ~modul:_ bindings expression ~expand =
 ;;
 
 (* Wrap a function body in [exclave_] *)
-let wrap_exclave ~loc expr = [%expr [%e expr]]
+let wrap_exclave ~loc:_ expr = [%expr [%e expr]]
 
 let maybe_wrap_exclave ~loc ~return_value_in_exclave expr =
   match return_value_in_exclave with
@@ -130,7 +130,7 @@ let maybe_wrap_exclave ~loc ~return_value_in_exclave expr =
   | true -> wrap_exclave ~loc expr
 ;;
 
-let maybe_wrap_local ~loc ~allocate_function_on_stack func =
+let maybe_wrap_local ~loc:_ ~allocate_function_on_stack func =
   if allocate_function_on_stack then [%expr [%e func]] else func
 ;;
 
@@ -555,7 +555,7 @@ let expand_for ext ~locality ~extension_kind ~loc ~modul ~pat ~from ~to_ ~direct
 let expand_function ~loc ~return_value_in_exclave ~zero_alloc cases =
   let func =
     match return_value_in_exclave with
-    | false -> pexp_function ~loc cases
+    | false -> pexp_function_cases ~loc cases
     | true ->
       let var = gen_symbol ~prefix:"__let_syntax" () in
       pexp_match ~loc (evar ~loc var) cases

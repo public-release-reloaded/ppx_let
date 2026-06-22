@@ -52,8 +52,8 @@ let%expect_test "for%bind (upto) expansion" =
                      then
                        let i = i + 1[@@ppxlib.do_not_enter_value ] in
                        __let_syntax_loop__004_ i
-                     else Let_syntax.return () : @ local))
-           [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                     else Let_syntax.return () :))
+           [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__004_ i)[@nontail ])
     else Let_syntax.return ()
     ----
@@ -88,8 +88,8 @@ let%expect_test "for%bind (upto) expansion" =
                                          let i = i + 1[@@ppxlib.do_not_enter_value
                                                         ] in
                                          __let_syntax_loop__008_ i
-                                       else Let_syntax.return () : @ local))
-             [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                                       else Let_syntax.return () :))
+             [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__008_ i)[@nontail ])
     else Let_syntax.return ()
     |}]
@@ -135,8 +135,8 @@ let%expect_test "for%bind (downto) expansion" =
                      then
                        let i = i - 1[@@ppxlib.do_not_enter_value ] in
                        __let_syntax_loop__012_ i
-                     else Let_syntax.return () : @ local))
-           [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                     else Let_syntax.return () :))
+           [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__012_ i)[@nontail ])
     else Let_syntax.return ()
     ----
@@ -171,8 +171,8 @@ let%expect_test "for%bind (downto) expansion" =
                                          let i = i - 1[@@ppxlib.do_not_enter_value
                                                         ] in
                                          __let_syntax_loop__016_ i
-                                       else Let_syntax.return () : @ local))
-             [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                                       else Let_syntax.return () :))
+             [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__016_ i)[@nontail ])
     else Let_syntax.return ()
     |}]
@@ -221,8 +221,8 @@ let%expect_test "for%bind wildcard pattern expansion" =
                        let __let_syntax_idx__021_ = __let_syntax_idx__021_ + 1
                          [@@ppxlib.do_not_enter_value ] in
                        __let_syntax_loop__022_ __let_syntax_idx__021_
-                     else Let_syntax.return () : @ local))
-           [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                     else Let_syntax.return () :))
+           [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__022_ __let_syntax_idx__021_)[@nontail ])
     else Let_syntax.return ()
     ----
@@ -266,8 +266,8 @@ let%expect_test "for%bind wildcard pattern expansion" =
                                                                        ] in
                                          __let_syntax_loop__028_
                                            __let_syntax_idx__027_
-                                       else Let_syntax.return () : @ local))
-             [@nontail ]) : @ local)[@@ppxlib.do_not_enter_value ] in
+                                       else Let_syntax.return () :))
+             [@nontail ]) :)[@@ppxlib.do_not_enter_value ] in
       ((__let_syntax_loop__028_ __let_syntax_idx__027_)[@nontail ])
     else Let_syntax.return ()
     |}]
